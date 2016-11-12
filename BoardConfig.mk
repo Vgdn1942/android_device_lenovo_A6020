@@ -7,6 +7,9 @@ LOCAL_PATH := device/lenovo/A6020
 
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
+# Ninja
+USE_NINJA := false
+
 # Asserts
 TARGET_OTA_ASSERT_DEVICE := A6020,A6020a40,A6020a46,A6020l36,K32c36,k5,k5_plus,vibe_k5
 
@@ -35,12 +38,13 @@ TARGET_BOOTLOADER_BOARD_NAME := A6020
 TARGET_KERNEL_SOURCE := kernel/lenovo/msm8929
 TARGET_KERNEL_CONFIG := wt82918-perf_defconfig
 TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android- 
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
+BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 
 # Platform
@@ -54,8 +58,8 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 6105849344 # 11925487 * 512 # mmcblk0p30
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 16777216 # 32768 * 512 # mmcblk0p24
 BOARD_HAS_NO_SELECT_BUTTON := true
 
-# TARGET_PREBUILT_KERNEL := device/lenovo/A6020/kernel
-# BOARD_KERNEL_PREBUILT_DT := true
+#TARGET_PREBUILT_KERNEL := device/lenovo/A6020/kernel
+BOARD_KERNEL_PREBUILT_DT := true
 
 # Audio
 #AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := true
@@ -75,12 +79,6 @@ QCOM_BT_USE_BTNV := true
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
-
-# CMHW
-BOARD_USES_CYANOGEN_HARDWARE := true
-BOARD_HARDWARE_CLASS += \
-    $(LOCAL_PATH)/cmhw \
-    hardware/cyanogen/cmhw
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
@@ -122,12 +120,31 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
 
+# TWRP
+RECOVERY_VARIANT := twrp
+TW_THEME := portrait_hdpi
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
+HAVE_SELINUX := true
+TW_NO_USB_STORAGE := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+TW_NO_REBOOT_BOOTLOADER := false
+#TW_USE_TOOLBOX := true
+RECOVERY_SDCARD_ON_DATA := true
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+TW_MAX_BRIGHTNESS := 255
+TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone0/temp
+TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+TW_DEFAULT_LANGUAGE := ru-RU
+TW_INCLUDE_NTFS_3G := true
+TW_INPUT_BLACKLIST := "hbtp_vm"
+
 # RIL
 TARGET_RIL_VARIANT := caf
 BOARD_PROVIDES_LIBRIL := false
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
+#include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
 
 # Wifi

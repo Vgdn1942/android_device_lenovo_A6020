@@ -27,11 +27,14 @@ DEVICE_PACKAGE_OVERLAYS += device/lenovo/A6020/overlay
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+
 	PRODUCT_COPY_FILES += \
-		device/lenovo/A6020/dt.img:dt.img
-	PRODUCT_COPY_FILES += \
-    	$(LOCAL_KERNEL):kernel
+    	$(LOCAL_KERNEL):kernel \
+        device/lenovo/A6020/dt/dt.img:dt.img
 endif
+
+PRODUCT_PACKAGES += \
+    dt.img
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -177,6 +180,10 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.qcom.ril.sh \
     ueventd.qcom.rc
+
+# TWRP
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/recovery/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # RIL
 
