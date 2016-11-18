@@ -23,10 +23,6 @@
          Software implementation will be used if config_hardware_auto_brightness_available is not set -->
     <bool name="config_automatic_brightness_available">true</bool>
 
-    <!-- Default screen brightness setting.
-         Must be in the range specified by minimum and maximum. -->
-    <integer name="config_screenBrightnessSettingDefault">80</integer>
-
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
          The N entries of this array define N  1 zones as follows:
 
@@ -38,15 +34,22 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
+        <item>1</item>        <!-- pitch black -->
         <item>5</item>
-        <item>35</item>
-        <item>100</item>
-        <item>300</item>
-        <item>1500</item>
-        <item>3500</item>
+        <item>9</item>
+        <item>14</item>
+        <item>25</item>       <!-- twilight -->
+        <item>50</item>       <!-- dim indoor -->
+        <item>100</item>      <!-- home -->
+        <item>200</item>
+        <item>300</item>      <!-- office -->
+        <item>500</item>      <!-- sunrise -->
+        <item>750</item>
+        <item>1000</item>     <!-- overcast -->
+        <item>2000</item>
         <item>5000</item>
-        <item>7000</item>
-        <item>12000</item>
+        <item>10000</item>    <!-- daylight -->
+        <item>20000</item>
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -54,16 +57,41 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
+        <item>7</item>
+        <item>8</item>
         <item>10</item>
-        <item>20</item>
-        <item>30</item>
-        <item>40</item>
-        <item>70</item>
-        <item>100</item>
-        <item>150</item>
+        <item>12</item>
+        <item>17</item>
+        <item>29</item>
+        <item>35</item>
+        <item>47</item>
+        <item>75</item>
+        <item>114</item>
+        <item>130</item>
+        <item>152</item>
+        <item>175</item>
         <item>200</item>
+        <item>215</item>
+        <item>235</item>
         <item>255</item>
     </integer-array>
+
+    <!-- Minimum screen brightness setting allowed by the power manager.
+         The user is forbidden from setting the brightness below this level. -->
+    <integer name="config_screenBrightnessSettingMinimum">1</integer>
+
+    <!-- Maximum screen brightness allowed by the power manager.
+         The user is forbidden from setting the brightness above this level. -->
+    <integer name="config_screenBrightnessSettingMaximum">255</integer>
+
+    <!-- Default screen brightness setting.
+         Must be in the range specified by minimum and maximum. -->
+    <integer name="config_screenBrightnessSettingDefault">53</integer>
+
+    <!-- Screen brightness used to dim the screen when the user activity
+         timeout expires.  May be less than the minimum allowed brightness setting
+         that can be set by the user. -->
+    <integer name="config_screenBrightnessDim">6</integer>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
          USB interfaces.  If the device doesn't want to support tething over USB this should
@@ -269,5 +297,5 @@
          Empty is viewed as "all".  Only used on devices which
          don't support RIL_REQUEST_GET_RADIO_CAPABILITY
          format is UMTS|LTE|... -->
-    <string translatable="false" name="config_radio_access_family">GSM | WCDMA | LTE | CDMA | EVDO</string>
+    <string translatable="false" name="config_radio_access_family">GSM|WCDMA|LTE</string>
 </resources>
