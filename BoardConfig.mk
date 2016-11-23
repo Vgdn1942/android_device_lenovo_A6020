@@ -135,6 +135,9 @@ TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
 TARGET_RIL_VARIANT := caf
 BOARD_PROVIDES_LIBRIL := false
 
+# Tap to Wake
+TARGET_TAP_TO_WAKE_NODE := "/proc/gesture_open"
+
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
