@@ -106,6 +106,10 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8916 \
     memtrack.msm8916
 
+# FM
+PRODUCT_PACKAGES += \
+    FMRadio \
+    libfmjni
 
 # CM
 
