@@ -87,9 +87,7 @@ TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
-BOARD_HARDWARE_CLASS += \
-    $(LOCAL_PATH)/cmhw \
-    hardware/cyanogen/cmhw
+BOARD_HARDWARE_CLASS += $(LOCAL_PATH)/cmhw/src
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
@@ -137,7 +135,7 @@ TARGET_RIL_VARIANT := caf
 BOARD_PROVIDES_LIBRIL := false
 
 # Tap to Wake
-TARGET_TAP_TO_WAKE_NODE := "/proc/gesture_open"
+TARGET_TAP_TO_WAKE_NODE := "/sys/android_touch/doubletap2wake"
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
