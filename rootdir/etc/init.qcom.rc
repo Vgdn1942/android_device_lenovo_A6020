@@ -511,6 +511,9 @@ on post-fs-data
     chmod 0660 /sys/module/power_supply_log/parameters/log_file
     write /sys/module/power_supply_log/parameters/log_file /data/power_log/power_off.log
 
+    # Tap To Wake
+    chown root system /sys/android_touch/*
+
     # Setup folder for camera HAL subsystem
     mkdir /data/camera_dump 0750 media media
 
