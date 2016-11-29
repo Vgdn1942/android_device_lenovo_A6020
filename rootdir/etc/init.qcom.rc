@@ -511,6 +511,33 @@ on post-fs-data
     chmod 0660 /sys/module/power_supply_log/parameters/log_file
     write /sys/module/power_supply_log/parameters/log_file /data/power_log/power_off.log
 
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chown system system /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+    chown system system /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq
+    chown system system /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq
+    chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+    chown system system /sys/devices/system/cpu/cpu5/cpufreq/scaling_min_freq
+    chown system system /sys/devices/system/cpu/cpu6/cpufreq/scaling_min_freq
+    chown system system /sys/devices/system/cpu/cpu7/cpufreq/scaling_min_freq
+
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu5/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu6/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu7/cpufreq/scaling_max_freq
+
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq "200000"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq "200000"
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq "200000"
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq "200000"
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq "200000"
+    write /sys/devices/system/cpu/cpu5/cpufreq/scaling_min_freq "200000"
+    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_min_freq "200000"
+    write /sys/devices/system/cpu/cpu7/cpufreq/scaling_min_freq "200000"
+
     # Tap To Wake
     chown system system /sys/android_touch/doubletap2wake
     chown system system /sys/android_touch/sweep2sleep

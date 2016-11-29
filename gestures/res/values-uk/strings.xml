@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2013-2014 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Жести</string>
+
+    <!-- Gesture shortcuts -->
+    <string name="screen_gestures_panel_title">Жести</string>
+    <string name="screen_gestures_panel_summary">Використовувати жести при вимкненому екрані</string>
+
+    <string name="touchscreen_sweep">Провести по екрану</string>
+
+    <string name="touchscreen_s2w_right_gesture_title">Жест вправо</string>
+    <string name="touchscreen_s2w_right_gesture_summary">Проведіть по екрану вправо, щоб включити пристрій</string>
+    <string name="touchscreen_s2w_left_gesture_title">Жест вліво</string>
+    <string name="touchscreen_s2w_left_gesture_summary">Проведіть по екрану вліво, щоб включити пристрій</string>
+    <string name="touchscreen_s2w_up_gesture_title">Жест вгору</string>
+    <string name="touchscreen_s2w_up_gesture_summary">Проведіть по екрану вгору, щоб включити пристрій</string>
+    <string name="touchscreen_s2w_down_gesture_title">Жест вниз</string>
+    <string name="touchscreen_s2w_down_gesture_summary">Проведіть по екрану вниз, щоб включити пристрій</string>
+
+    <string name="touchscreen_doubletap">Подвійне натискання</string>
+
+    <string name="touchscreen_dt2w_gesture_title">Включення подвійним натисканням</string>
+    <string name="touchscreen_dt2w_gesture_summary">Двічі натисніть в будь-якому місці екрану, щоб включити пристрій</string>
+</resources>

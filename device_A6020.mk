@@ -121,6 +121,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	Gello
 
+# Gestures
+PRODUCT_PACKAGES += \
+    Gestures
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8916
