@@ -512,7 +512,15 @@ on post-fs-data
     write /sys/module/power_supply_log/parameters/log_file /data/power_log/power_off.log
 
     # Tap To Wake
-    chown root system /sys/android_touch/*
+    chown system system /sys/android_touch/doubletap2wake
+    chown system system /sys/android_touch/sweep2sleep
+    chown system system /sys/android_touch/sweep2wake
+    chown system system /sys/android_touch/sweep2wake_down
+    chown system system /sys/android_touch/sweep2wake_left
+    chown system system /sys/android_touch/sweep2wake_right
+    chown system system /sys/android_touch/sweep2wake_up
+    chown system system /sys/android_touch/vib_strength
+    chown system system /sys/android_touch/wake_gestures
 
     # Setup folder for camera HAL subsystem
     mkdir /data/camera_dump 0750 media media
