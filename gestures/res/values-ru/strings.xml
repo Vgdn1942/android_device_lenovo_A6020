@@ -36,4 +36,10 @@
 
     <string name="touchscreen_dt2w_gesture_title">Включение двойным нажатием</string>
     <string name="touchscreen_dt2w_gesture_summary">Дважды нажмите в любом месте экрана, чтобы включить устройство</string>
+
+    <!-- Haptic feedback  -->
+    <string name="touchscreen_extras">Прочее</string>
+
+    <string name="haptic_feedback_title">Виброотклик</string>
+    <string name="haptic_feedback_summary">Вибрировать при успешном распознавании жеста</string>
 </resources>

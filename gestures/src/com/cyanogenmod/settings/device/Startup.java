@@ -67,7 +67,8 @@ public class Startup extends BroadcastReceiver {
             new File(Constants.TOUCHSCREEN_S2W_LEFT_NODE).exists() &&
             new File(Constants.TOUCHSCREEN_S2W_UP_NODE).exists() &&
             new File(Constants.TOUCHSCREEN_S2W_DOWN_NODE).exists() &&
-            new File(Constants.TOUCHSCREEN_DT2W_NODE).exists();
+            new File(Constants.TOUCHSCREEN_DT2W_NODE).exists() &&
+            new File(Constants.TOUCHSCREEN_VIB_ENABLE_NODE).exists();
     }
 
     private void disableComponent(Context context, String component) {

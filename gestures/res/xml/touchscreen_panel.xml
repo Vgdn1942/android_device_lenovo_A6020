@@ -49,4 +49,13 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/touchscreen_extras">
+
+        <SwitchPreference
+            android:key="touchscreen_gesture_vib_enable"
+            android:title="@string/haptic_feedback_title"
+            android:summary="@string/haptic_feedback_summary" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
