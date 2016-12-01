@@ -20,18 +20,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
-
 DEVICE_PACKAGE_OVERLAYS += device/lenovo/A6020/overlay
-
-
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-else
-	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-	PRODUCT_COPY_FILES += \
-		device/lenovo/A6020/dt.img:dt.img
-	PRODUCT_COPY_FILES += \
-    	$(LOCAL_KERNEL):kernel
-endif
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -116,7 +105,6 @@ PRODUCT_PACKAGES += \
     libfmjni
 
 # CM
-
 PRODUCT_PACKAGES += \
 	org.cyanogenmod.platform \
 	org.cyanogenmod.platform-res
@@ -163,10 +151,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
-# Offline Charger
-# PRODUCT_PACKAGES += \
-#    charger_res_images
-
 # OMX
 PRODUCT_PACKAGES += \
     libOmxAacEnc \
@@ -183,9 +167,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.msm8916
 
-
 # Ramdisk
-
 PRODUCT_PACKAGES += \
     fstab.qcom \
     init.mmi.usb.rc \
@@ -196,7 +178,6 @@ PRODUCT_PACKAGES += \
     ueventd.qcom.rc
 
 # RIL
-
 PRODUCT_PACKAGES += \
     libcnefeatureconfig \
     librmnetctl \
@@ -205,7 +186,6 @@ PRODUCT_PACKAGES += \
     ril-wrapper
 
 # Sensors
-
 PRODUCT_PACKAGES += \
     sensors.msm8916 \
 	libcalmodule_common
@@ -215,11 +195,9 @@ PRODUCT_PACKAGES += \
     libstlport
 
 # Shim
-
 PRODUCT_PACKAGES += \
 	libshim_ril \
 	libshim_gui
-
 
 # Telephony-ext
 PRODUCT_PACKAGES += telephony-ext
@@ -246,8 +224,6 @@ PRODUCT_PACKAGES += \
     libQWiFiSoftApCfg \
     tcpdump \
     wcnss_service
-
-
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := full_A6020
