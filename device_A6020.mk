@@ -106,6 +106,10 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8916 \
     memtrack.msm8916
 
+# Doze mode
+PRODUCT_PACKAGES += \
+    A6020Doze
+
 # FM
 PRODUCT_PACKAGES += \
     FMRadio \
