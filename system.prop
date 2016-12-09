@@ -24,8 +24,9 @@ DEVICE_PROVISIONED=1
 # Start in cdma mode
 ro.telephony.3g2g_network=3
 
-debug.sf.hw=0
-debug.egl.hw=0
+debug.sf.hw=1
+debug.egl.hw=1
+video.accelerate.hw=1
 persist.hwc.mdpcomp.enable=true
 debug.mdpcomp.logs=0
 dalvik.vm.heapsize=36m
@@ -59,8 +60,6 @@ media.stagefright.enable-aac=true
 media.stagefright.enable-qcp=true
 media.stagefright.enable-fma2dp=true
 media.stagefright.enable-scan=true
-media.msm8939hw=0
-media.msm8929hw=0
 mm.enable.smoothstreaming=true
 mmp.enable.3g2=true
 media.aac_51_output_enabled=true
@@ -180,14 +179,12 @@ ro.lenovo.wificert=no
 ro.lenovo.series=Lenovo K5
 ro.lenovo.adb=apkctl
 ro.lenovo.signalbars=four
-ro.product.model=Lenovo A6020a40
 ro.product.brand=Lenovo
 ro.product.manufacturer=LENOVO
 ro.lenovo.videocall=false
 ro.lenovo.vibeuistyle=true
 persist.backgrounddata.enable=false
 persist.lenovo.ltetype=CSFB
-ro.product.ota.model=Lenovo A6020a40
 ro.lenovo.cta=false
 persist.lenovo.feedback=true
 #-Bug 90160 lenovo Android general property
@@ -232,9 +229,17 @@ ro.telephony.cm_blklst_on=0
 #This is required for the camera
 ro.vendor.extension_library=libqti-perfd-client.so
 camera2.portability.force_api=1
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
+
+#Fix for l36 variant 1080p recording issue
+camera.disable_zsl_mode=1
+persist.camera.HAL3.enabled=0
+persist.camera.cpp.duplication=false
 
 #Stop spamming
 persist.data.qmi.adb_logmask=0
 
 #Bluetooth
 ro.qualcomm.bt.hci_transport=smd
+qcom.bluetooth.soc=smd
