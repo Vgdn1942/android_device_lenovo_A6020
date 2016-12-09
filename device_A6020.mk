@@ -110,8 +110,8 @@ PRODUCT_PACKAGES += \
 	org.cyanogenmod.platform-res
 
 # Gello
-PRODUCT_PACKAGES += \
-	Gello
+#PRODUCT_PACKAGES += \
+#	Gello
 
 # Gestures
 PRODUCT_PACKAGES += \
