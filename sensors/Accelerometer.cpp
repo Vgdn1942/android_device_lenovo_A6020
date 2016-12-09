@@ -49,7 +49,7 @@
 AccelSensor::AccelSensor()
 	: SensorBase(NULL, "accelerometer"),
 	  mEnabled(0),
-	  mInputReader(6),
+	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0)
 {
@@ -78,7 +78,7 @@ AccelSensor::AccelSensor()
 AccelSensor::AccelSensor(char *name)
 	: SensorBase(NULL, "accelerometer"),
 	  mEnabled(0),
-	  mInputReader(6),
+	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0)
 {
@@ -98,9 +98,9 @@ AccelSensor::AccelSensor(char *name)
 }
 
 AccelSensor::AccelSensor(SensorContext *context)
-	: SensorBase(NULL, NULL),
+	: SensorBase(NULL, NULL, context),
 	  mEnabled(0),
-	  mInputReader(6),
+	  mInputReader(4),
 	  mHasPendingEvent(false),
 	  mEnabledTime(0)
 {
@@ -235,15 +235,15 @@ again:
 				break;
 				case SYN_REPORT:
 					{
-						if (mEnabled && mUseAbsTimeStamp) {
+						if(mUseAbsTimeStamp != true) {
+							mPendingEvent.timestamp = timevalToNano(event->time);
+						}
+						if (mEnabled) {
 							if(mPendingEvent.timestamp >= mEnabledTime) {
 								*data++ = mPendingEvent;
 								numEventReceived++;
 							}
 							count--;
-							mUseAbsTimeStamp = false;
-						} else {
-							ALOGE_IF(!mUseAbsTimeStamp, "AccelSensor:timestamp not received");
 						}
 					}
 				break;

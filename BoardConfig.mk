@@ -10,10 +10,8 @@ TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 # Asserts
 TARGET_OTA_ASSERT_DEVICE := A6020,A6020a40,A6020a46,A6020l36,K32c36,k5,k5_plus,vibe_k5
 
-# Ninja
-#USE_NINJA := false
-
 # Architecture
+
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
@@ -29,12 +27,9 @@ TARGET_2ND_CPU_VARIANT := cortex-a53
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 # Bootloader
+
 TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_BOARD_NAME := A6020
-
-# Charger
-BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BOARD_HAL_STATIC_LIBRARIES := libhealthd.msm8916
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/lenovo/msm8929
@@ -50,7 +45,6 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8916
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno405
 
 # fix this up by examining /proc/mtd on a running device
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216 # 32768 * 512 # mmcblk0p22
@@ -59,6 +53,11 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1342177280 # 2621440 * 512 # mmcblk0p23
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 6105849344 # 11925487 * 512 # mmcblk0p30
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 16777216 # 32768 * 512 # mmcblk0p24
 BOARD_HAS_NO_SELECT_BUTTON := true
+
+# TARGET_PREBUILT_KERNEL := device/lenovo/A6020/kernel
+# BOARD_KERNEL_PREBUILT_DT := true
+
+USE_NINJA := false
 
 # Audio
 #AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := true
@@ -74,13 +73,15 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
 QCOM_BT_USE_BTNV := true
 
+
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
-TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
-BOARD_HARDWARE_CLASS += $(LOCAL_PATH)/cmhw/src
+BOARD_HARDWARE_CLASS += \
+    $(LOCAL_PATH)/cmhw \
+    hardware/cyanogen/cmhw
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
@@ -92,7 +93,6 @@ TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
 
 # FM
-TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_A6020
@@ -102,6 +102,7 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_A6020
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Offline charger
+
 BOARD_HEALTHD_CUSTOM_CHARGER_RES := $(LOCAL_PATH)/charger/images
 
 # Partitions
@@ -109,6 +110,8 @@ BOARD_FLASH_BLOCK_SIZE := 131072  # Just default value. Not sure
 
 # Power
 TARGET_POWERHAL_VARIANT := qcom
+
+# Properties
 
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
@@ -123,9 +126,6 @@ TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
 # RIL
 TARGET_RIL_VARIANT := caf
 BOARD_PROVIDES_LIBRIL := false
-
-# Tap to Wake
-TARGET_TAP_TO_WAKE_NODE := "/sys/android_touch/doubletap2wake"
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk

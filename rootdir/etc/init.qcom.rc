@@ -116,10 +116,8 @@ on boot
     chown bluetooth bluetooth /sys/module/hci_uart/parameters/ath_btwrite
     chown system system /sys/module/sco/parameters/disable_esco
     chown bluetooth bluetooth /sys/module/hci_smd/parameters/hcismd_set
-    chown system system /sys/module/radio_iris_transport/parameters/fmsmd_set
     chmod 0660 /sys/module/bluetooth_power/parameters/power
     chmod 0660 /sys/module/hci_smd/parameters/hcismd_set
-    chmod 0660 /sys/module/radio_iris_transport/parameters/fmsmd_set
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chmod 0660 /proc/bluetooth/sleep/proto
     chown bluetooth bluetooth /dev/ttyHS0
@@ -270,17 +268,8 @@ on boot
     chmod 0664 /sys/class/leds/lcd-backlight/brightness
     chown system system /sys/class/leds/green/blink
     chmod 0664 /sys/class/leds/green/blink
-    chown system system /sys/class/leds/green/delay_on
-    chmod 0664 /sys/class/leds/green/delay_on
-    chown system system /sys/class/leds/green/delay_off
-    chmod 0664 /sys/class/leds/green/delay_off
-
     chown system system /sys/class/leds/red/blink
     chmod 0664 /sys/class/leds/red/blink
-    chown system system /sys/class/leds/red/delay_on
-    chmod 0664 /sys/class/leds/red/delay_on
-    chown system system /sys/class/leds/red/delay_off
-    chmod 0664 /sys/class/leds/red/delay_off
 
     # Change the ownership of the notification LED interface
     chown system system /sys/class/leds/rgb/control
@@ -474,10 +463,6 @@ on post-fs-data
     # Sensor
     mkdir /persist/sensors 0770 system system
 
-    # Create FM dir for patchdownloader
-    mkdir /data/misc/fm 0770 system system
-    chmod 0770 /data/misc/fm
-
     # Setup folder for native to transfer data to NativeDropBoxAgent
     mkdir /data/system/dropbox-add 0730 system diag
 
@@ -510,45 +495,6 @@ on post-fs-data
     mkdir /data/power_log 0750 root log
     chmod 0660 /sys/module/power_supply_log/parameters/log_file
     write /sys/module/power_supply_log/parameters/log_file /data/power_log/power_off.log
-
-    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-    chown system system /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
-    chown system system /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq
-    chown system system /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq
-    chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
-    chown system system /sys/devices/system/cpu/cpu5/cpufreq/scaling_min_freq
-    chown system system /sys/devices/system/cpu/cpu6/cpufreq/scaling_min_freq
-    chown system system /sys/devices/system/cpu/cpu7/cpufreq/scaling_min_freq
-
-    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-    chown system system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
-    chown system system /sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq
-    chown system system /sys/devices/system/cpu/cpu3/cpufreq/scaling_max_freq
-    chown system system /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
-    chown system system /sys/devices/system/cpu/cpu5/cpufreq/scaling_max_freq
-    chown system system /sys/devices/system/cpu/cpu6/cpufreq/scaling_max_freq
-    chown system system /sys/devices/system/cpu/cpu7/cpufreq/scaling_max_freq
-
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq "200000"
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq "200000"
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq "200000"
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq "200000"
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq "200000"
-    write /sys/devices/system/cpu/cpu5/cpufreq/scaling_min_freq "200000"
-    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_min_freq "200000"
-    write /sys/devices/system/cpu/cpu7/cpufreq/scaling_min_freq "200000"
-
-    # Tap To Wake
-    chown system system /sys/android_touch/doubletap2wake
-    chown system system /sys/android_touch/sweep2sleep
-    chown system system /sys/android_touch/sweep2wake
-    chown system system /sys/android_touch/sweep2wake_down
-    chown system system /sys/android_touch/sweep2wake_left
-    chown system system /sys/android_touch/sweep2wake_right
-    chown system system /sys/android_touch/sweep2wake_up
-    chown system system /sys/android_touch/vib_enable
-    chown system system /sys/android_touch/vib_strength
-    chown system system /sys/android_touch/wake_gestures
 
     # Setup folder for camera HAL subsystem
     mkdir /data/camera_dump 0750 media media
@@ -762,13 +708,6 @@ on property:bluetooth.hciattach=true
 on property:bluetooth.hciattach=false
     setprop bluetooth.status off
 
-# FM
-on property:hw.fm.init=0
-    write /sys/module/radio_iris_transport/parameters/fmsmd_set 0
-
-on property:hw.fm.init=1
-    write /sys/module/radio_iris_transport/parameters/fmsmd_set 1
-
 # QMUX must be in multiple groups to support external process connections
 service qmuxd /system/bin/qmuxd
     class main
@@ -918,7 +857,7 @@ service vm_bms /system/bin/vm_bms
     user root
     group root
 
-service charger /charger -c
+service charger /sbin/healthd -c
     class charger
     critical
     seclabel u:r:healthd:s0
