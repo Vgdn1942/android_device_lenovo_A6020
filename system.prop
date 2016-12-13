@@ -2,11 +2,6 @@
 # system.prop for A6020
 #
 
-
-# Display
-ro.lenovo.lcdsize=5
-
-
 rild.libpath=ril-wrapper.so
 rild.libargs=-d /dev/smd0
 persist.rild.nitz_plmn=
@@ -171,12 +166,10 @@ ro.lenovo.operator=open
 ro.lenovo.platform=qualcomm
 ro.lenovo.bqb=pass
 ro.lenovo.wificert=no
-ro.lenovo.series=Lenovo K5
+ro.lenovo.series=Lenovo Vibe K5
 ro.lenovo.adb=apkctl
 ro.lenovo.signalbars=four
-ro.product.brand=Lenovo
-ro.product.manufacturer=LENOVO
-ro.lenovo.videocall=false
+ ro.lenovo.videocall=false
 ro.lenovo.vibeuistyle=true
 persist.backgrounddata.enable=false
 persist.lenovo.ltetype=CSFB
@@ -190,13 +183,13 @@ ro.lenovo.cpuinfo=MSM8929,8,1.4
 ## -bug143950 dupeiyu.wt add 20160128
 
 #fengjuan.wt, add, set default timezone
-persist.sys.timezone=Asia/Shanghai
+persist.sys.timezone=Europe/Moscow
 persist.radio.primarycard=true
 persist.radio.msim_swap=true
 ro.lenovo.ecc_enabled_for_nw=true
 audio.offload.disable=1
-#zhaoqf_sh add for coutry ISO 2015-12-17 default CN
-ro.lenovo.easyimage.code=fr
+#vgdn1942 add for coutry ISO 2016-12-13 default RU
+ro.lenovo.easyimage.code=ru
 
 
 # Taken from vendor/default
