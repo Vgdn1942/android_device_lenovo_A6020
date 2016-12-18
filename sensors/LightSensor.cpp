@@ -309,5 +309,5 @@ float LightSensor::convertEvent(int value)
 	}
 
     // There seems to be a factor 10 in the returned lux value.
-	return lux / 10f;
+	return lux / 10.0f;
 }
