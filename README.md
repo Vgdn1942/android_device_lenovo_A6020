@@ -6,15 +6,15 @@ It was announced on February 2016.
 
 Basic   | Spec Sheet
 -------:|:-------------------------
-CPU     | Quad-core 1.5 GHz Cortex-A53 & quad-core 1.2 GHz Cortex-A53
-Chipset | Qualcomm MSM8929 Snapdragon 415
+CPU     | Quad-core 1.7 GHz Cortex-A53 & quad-core 1.2 GHz Cortex-A53
+Chipset | Qualcomm MSM8939 Snapdragon 615
 GPU     | Adreno 405
 Memory  | 2 GB RAM
 Shipped Android Version | 5.1
 Storage | 16 GB
 MicroSD | Up to 32 GB
 Battery | Removable Li-Ion 2750mAh battery
-Display | 720 x 1280 pixels, 5.0 inches (~294 ppi pixel density)
+Display | 1080 x 1920 pixels, 5.0 inches (~440 ppi pixel density)
 Camera  | 13 MP, autofocus, flash LED
 
 Copyright 2016 - The CyanogenMod Project.
