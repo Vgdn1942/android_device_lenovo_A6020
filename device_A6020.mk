@@ -228,6 +228,15 @@ PRODUCT_PACKAGES += \
     tcpdump \
     wcnss_service
 
+# Thermal itux
+ENABLE_ITUXD := true
+
+PRODUCT_PACKAGES += \
+    ituxd
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hardware.vulkan=qcom-adreno-405
+
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := full_A6020
 PRODUCT_DEVICE := A6020
