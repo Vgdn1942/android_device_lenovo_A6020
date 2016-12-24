@@ -42,4 +42,7 @@
 
     <string name="haptic_feedback_title">Вібро-відгук</string>
     <string name="haptic_feedback_summary">Вібрувати, коли виявлено жест</string>
+
+    <string name="pocket_mod_title">Запобігання випадкового пробудження</string>
+    <string name="pocket_mod_summary">Перевіряти датчик наближення при виході з режиму сну з використанням жестів</string>
 </resources>

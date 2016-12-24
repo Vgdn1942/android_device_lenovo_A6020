@@ -550,6 +550,10 @@ on post-fs-data
     chown system system /sys/android_touch/vib_strength
     chown system system /sys/android_touch/wake_gestures
 
+    # Pocked Mod
+    chown system system /sys/twf_debug/ps_state
+    chown system system /sys/pocket_mod/enable
+
     # Setup folder for camera HAL subsystem
     mkdir /data/camera_dump 0750 media media
 

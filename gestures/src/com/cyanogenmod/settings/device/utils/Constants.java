@@ -32,6 +32,7 @@ public class Constants {
     public static final String TOUCHSCREEN_S2W_DOWN_GESTURE_KEY = "touchscreen_gesture_s2w_down";
     public static final String TOUCHSCREEN_DT2W_GESTURE_KEY = "touchscreen_gesture_dt2w";
     public static final String TOUCHSCREEN_VIB_ENABLE_KEY = "touchscreen_gesture_vib_enable";
+    public static final String TOUCHSCREEN_POCKET_MOD_KEY = "touchscreen_pocket_mod";
 
     // Proc nodes
     public static final String TOUCHSCREEN_S2W_RIGHT_NODE = "/sys/android_touch/sweep2wake_right";
@@ -40,6 +41,7 @@ public class Constants {
     public static final String TOUCHSCREEN_S2W_DOWN_NODE = "/sys/android_touch/sweep2wake_down";
     public static final String TOUCHSCREEN_DT2W_NODE = "/sys/android_touch/doubletap2wake";
     public static final String TOUCHSCREEN_VIB_ENABLE_NODE = "/sys/android_touch/vib_enable";
+    public static final String TOUCHSCREEN_POCKET_MOD_NODE = "/sys/pocket_mod/enable";
 
     // Proc nodes default values
     public static final boolean TOUCHSCREEN_S2W_RIGHT_DEFAULT = false;
@@ -48,6 +50,7 @@ public class Constants {
     public static final boolean TOUCHSCREEN_S2W_DOWN_DEFAULT = false;
     public static final boolean TOUCHSCREEN_DT2W_DEFAULT = false;
     public static final boolean TOUCHSCREEN_VIB_ENABLE_DEFAULT = true;
+    public static final boolean TOUCHSCREEN_POCKET_MOD_DEFAULT = true;
 
     // Holds <preference_key> -> <proc_node> mapping
     public static final Map<String, String> sNodePreferenceMap = new HashMap<String, String>();
@@ -62,6 +65,7 @@ public class Constants {
         sNodePreferenceMap.put(TOUCHSCREEN_S2W_DOWN_GESTURE_KEY, TOUCHSCREEN_S2W_DOWN_NODE);
         sNodePreferenceMap.put(TOUCHSCREEN_DT2W_GESTURE_KEY, TOUCHSCREEN_DT2W_NODE);
         sNodePreferenceMap.put(TOUCHSCREEN_VIB_ENABLE_KEY, TOUCHSCREEN_VIB_ENABLE_NODE);
+        sNodePreferenceMap.put(TOUCHSCREEN_POCKET_MOD_KEY, TOUCHSCREEN_POCKET_MOD_NODE);
 
         sNodeDefaultMap.put(TOUCHSCREEN_S2W_RIGHT_GESTURE_KEY, TOUCHSCREEN_S2W_RIGHT_DEFAULT);
         sNodeDefaultMap.put(TOUCHSCREEN_S2W_LEFT_GESTURE_KEY, TOUCHSCREEN_S2W_LEFT_DEFAULT);
@@ -69,6 +73,7 @@ public class Constants {
         sNodeDefaultMap.put(TOUCHSCREEN_S2W_DOWN_GESTURE_KEY, TOUCHSCREEN_S2W_DOWN_DEFAULT);
         sNodeDefaultMap.put(TOUCHSCREEN_DT2W_GESTURE_KEY, TOUCHSCREEN_DT2W_DEFAULT);
         sNodeDefaultMap.put(TOUCHSCREEN_VIB_ENABLE_KEY, TOUCHSCREEN_VIB_ENABLE_DEFAULT);
+        sNodeDefaultMap.put(TOUCHSCREEN_POCKET_MOD_KEY, TOUCHSCREEN_POCKET_MOD_DEFAULT);
     }
 
     public static boolean isPreferenceEnabled(Context context, String key, boolean defaultValue) {

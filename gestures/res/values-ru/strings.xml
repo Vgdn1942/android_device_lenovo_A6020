@@ -42,4 +42,7 @@
 
     <string name="haptic_feedback_title">Виброотклик</string>
     <string name="haptic_feedback_summary">Вибрировать при успешном распознавании жеста</string>
+
+    <string name="pocket_mod_title">Предотвращать случайное включение</string>
+    <string name="pocket_mod_summary">Проверять датчик приближения при выходе из режима сна с использованием жестов</string>
 </resources>

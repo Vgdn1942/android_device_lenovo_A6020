@@ -42,4 +42,7 @@
 
     <string name="haptic_feedback_title">Haptic feedback</string>
     <string name="haptic_feedback_summary">Vibrate when a gesture got detected</string>
+
+    <string name="pocket_mod_title">Prevent accidental wake-up</string>
+    <string name="pocket_mod_summary">Check the proximity sensor prior to wake-ups triggered by gestures</string>
 </resources>

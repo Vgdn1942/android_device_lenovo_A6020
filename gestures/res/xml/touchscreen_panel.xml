@@ -56,6 +56,11 @@
             android:title="@string/haptic_feedback_title"
             android:summary="@string/haptic_feedback_summary" />
 
+        <SwitchPreference
+            android:key="touchscreen_pocket_mod"
+            android:title="@string/pocket_mod_title"
+            android:summary="@string/pocket_mod_summary" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
