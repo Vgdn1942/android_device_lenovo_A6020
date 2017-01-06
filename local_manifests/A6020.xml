@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <project path="device/lenovo/A6020" name="Vgdn1942/android_device_lenovo_A6020" remote="github" revision="lineage-14.1" />
-    <project path="kernel/lenovo/msm8929" name="Vgdn1942/android_kernel_lenovo_msm8929" remote="github" revision="cm-14.1" />
+    <project path="kernel/lenovo/msm8929" name="Vgdn1942/android_kernel_lenovo_msm8929" remote="github" revision="lineage-14.1" />
     <project path="vendor/lenovo/A6020" name="Vgdn1942/android_vendor_lenovo_A6020" remote="github" revision="cm-14.1" />
 </manifest>
