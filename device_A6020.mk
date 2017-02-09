@@ -130,6 +130,10 @@ PRODUCT_PACKAGES += \
     imssettings \
     imscmlibrary
 
+# IMSEnabler
+PRODUCT_PACKAGES += \
+    IMSEnabler
+
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8916
