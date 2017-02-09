@@ -124,6 +124,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     gps.msm8916
 
+# IMS
+PRODUCT_PACKAGES += \
+    ims \
+    imssettings \
+    imscmlibrary
+
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8916
