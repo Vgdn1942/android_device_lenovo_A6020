@@ -923,9 +923,11 @@ service vm_bms /system/bin/vm_bms
     user root
     group root
 
-service charger /charger
+service charger /sbin/healthd -c
     class charger
     critical
+    user root
+    group graphics
     seclabel u:r:healthd:s0
 
 service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf

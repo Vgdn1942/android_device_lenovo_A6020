@@ -34,9 +34,7 @@ TARGET_BOOTLOADER_BOARD_NAME := A6020
 
 # Charger
 WITH_CM_CHARGER := false
-BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_HAL_STATIC_LIBRARIES := libhealthd.msm8916
-BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/lenovo/msm8929
@@ -145,6 +143,11 @@ TARGET_PROVIDES_LIBLIGHT := true
 BOARD_HEALTHD_CUSTOM_CHARGER_RES := $(LOCAL_PATH)/charger/images
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
+BACKLIGHT_PATH := "/sys/class/leds/lcd-backlight/brightness"
+RED_LED_PATH := "/sys/class/leds/red/brightness"
+GREEN_LED_PATH := "/sys/class/leds/green/brightnes"
+CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/charging_enabled"
+HEALTHD_BACKLIGHT_LEVEL := 60
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072  # Just default value. Not sure
