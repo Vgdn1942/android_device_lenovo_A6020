@@ -3,18 +3,24 @@
     package="com.cyanogenmod.settings.doze"
     android:versionCode="1"
     android:versionName="1.0"
-    android:sharedUserId="android.uid.system">
+    android:sharedUserId="android.uid.system"
+    >
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="21"/>
+        android:targetSdkVersion="21" />
+
+    <protected-broadcast android:name="com.android.systemui.doze.pulse" />
 
     <application
-        android:label="A6020Doze"
-        android:persistent="true">
+        android:allowBackup="true"
+        android:label="@string/device_settings_app_name"
+        android:persistent="true"
+        android:theme="@android:style/Theme.Material.Settings">
 
         <receiver android:name="com.cyanogenmod.settings.doze.BootCompletedReceiver">
             <intent-filter>
@@ -23,14 +29,27 @@
             </intent-filter>
         </receiver>
 
-        <service android:name="com.cyanogenmod.settings.doze.DozeService"
-                 android:permission="A6020DozeService">
+        <service android:name="ServiceWrapper" android:permission="ServiceWrapper">
+            <intent-filter>
+                <action android:name="ServiceWrapper"/>
+            </intent-filter>
         </service>
 
         <activity
+                  android:excludeFromRecents="true"
+                  android:name="CMActions"
+                  android:label="CMActions"
+                  android:launchMode="singleInstance"
+                  android:screenOrientation="portrait"
+                  android:windowAnimationStyle="@null">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".DozeSettings"
-            android:label="@string/ambient_display_title"
-            android:theme="@android:style/Theme.Material.Settings">
+            android:label="@string/ambient_display_title">
             <intent-filter>
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
             </intent-filter>
@@ -43,4 +62,5 @@
         </activity>
 
     </application>
+
 </manifest>

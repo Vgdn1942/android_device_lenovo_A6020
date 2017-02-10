@@ -100,7 +100,7 @@ PRODUCT_PACKAGES += \
 
 # Doze mode
 PRODUCT_PACKAGES += \
-    A6020Doze
+    CMActions
 
 # FM
 PRODUCT_PACKAGES += \
