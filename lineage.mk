@@ -29,3 +29,6 @@ PRODUCT_MANUFACTURER := lenovo
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME="Lenovo Vibe K5"
 
+#SuperUser
+WITH_SU := true
+
