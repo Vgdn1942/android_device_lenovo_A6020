@@ -19,25 +19,26 @@ DEVICE_PROVISIONED=1
 # Start in cdma mode
 ro.telephony.3g2g_network=3
 
-debug.sf.hw=1
-debug.egl.hw=1
-video.accelerate.hw=1
-persist.sys.composition.type=c2d
-debug.composition.type=c2d
-hwui.disable_vsync=true
+debug.sf.hw=0
+debug.egl.hw=0
 persist.hwc.mdpcomp.enable=true
 debug.mdpcomp.logs=0
 dalvik.vm.zygotemaxfailedboots=5
 dev.pm.dyn_samplingrate=1
+ro.hwui.texture_cache_flushrate=0.4
 persist.demo.hdmirotationlock=false
-debug.mdpcomp.idletime=600
+debug.mdpcomp.idletime=400
 debug.enable.sglscale=1
+debug.gralloc.enable_fb_ubwc=1
+debug.gralloc.gfx_ubwc_disable=0
+debug.composition.type=c2d 
 
 #ro.hdmi.enable=true
-#tunnel.decode=true
+tunnel.decode=true
 #tunnel.audiovideo.decode=true
-#lpa.decode=false
-#lpa.use-stagefright=true
+lpa.decode=true
+lpa.encode=true
+lpa.use-stagefright=false
 #persist.speaker.prot.enable=false
 
 #
@@ -101,19 +102,21 @@ persist.fuse_sdcard=true
 #snapdragon value add features
 #
 ro.qc.sdk.audio.ssr=true
-##fluencetype can be "fluence" or "fluencepro" or "none"
 ro.qc.sdk.audio.fluencetype=fluencepro
+persist.audio.fluence.mode=endfire
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=true
 persist.audio.fluence.speaker=true
+persist.audio.hifi=true
+persist.audio.hifi_dac=ON
 #Set for msm8916
-tunnel.audio.encode = false
+tunnel.audio.encode=false
 #Buffer size in kbytes for compress offload playback
-audio.offload.buffer.size.kb=256
+audio.offload.buffer.size.kb=64
 #Minimum duration for offload playback in secs
-audio.offload.min.duration.secs=10
+audio.offload.min.duration.secs=30
 #Enable offload audio video playback by default
-av.offload.enable=true
+av.offload.enable=false
 #enable voice path for PCM VoIP by default
 use.voice.path.for.pcm.voip=true
 
@@ -134,9 +137,6 @@ persist.hwc.enable_vds=1
 #property to enable narrow search range for video encoding
 vidc.enc.narrow.searchrange=1
 
-#property to enable DS2 dap
-audio.dolby.ds2.enabled=true
-
 # Enable DRM system property
 drm.service.enabled=1
 #Trim properties
@@ -154,10 +154,6 @@ ro.sys.fw.bservice_enable=true
 ro.sys.fw.bservice_limit=5
 ro.sys.fw.bservice_age=5000
 
-#min/max cpu in core control
-ro.core_ctl_min_cpu=2
-ro.core_ctl_max_cpu=4
-
 # system property for PIP support
 persist.camera.pip.support=0
 persist.camera.beauty=16
@@ -169,10 +165,10 @@ ro.lenovo.operator=open
 ro.lenovo.platform=qualcomm
 ro.lenovo.bqb=pass
 ro.lenovo.wificert=no
-ro.lenovo.series=Lenovo Vibe K5
+ro.lenovo.series=Lenovo VIBE K5
 ro.lenovo.adb=apkctl
 ro.lenovo.signalbars=four
- ro.lenovo.videocall=false
+ro.lenovo.videocall=false
 ro.lenovo.vibeuistyle=true
 persist.backgrounddata.enable=false
 persist.lenovo.ltetype=CSFB
@@ -186,13 +182,13 @@ ro.lenovo.cpuinfo=MSM8929,8,1.4
 ## -bug143950 dupeiyu.wt add 20160128
 
 #fengjuan.wt, add, set default timezone
-persist.sys.timezone=Europe/Moscow
+persist.sys.timezone=Asia/Shanghai
 persist.radio.primarycard=true
 persist.radio.msim_swap=true
 ro.lenovo.ecc_enabled_for_nw=true
 audio.offload.disable=1
-#vgdn1942 add for coutry ISO 2016-12-13 default RU
-ro.lenovo.easyimage.code=ru
+#zhaoqf_sh add for coutry ISO 2015-12-17 default CN
+ro.lenovo.easyimage.code=cn
 
 
 # Taken from vendor/default
@@ -224,101 +220,9 @@ media.stagefright.legacyencoder=true
 media.stagefright.less-secure=true
 
 #Fix for l36 variant 1080p recording issue
-camera.disable_zsl_mode=1
-persist.camera.HAL3.enabled=1
+camera.disable_zsl_mode=0
+persist.camera.HAL3.enabled=0
 persist.camera.cpp.duplication=false
-
-#Others
-persist.vt.supported=0
-telephony.lteOnCdmaDevice=1
-persist.ims.volte=true
-persist.ims.vt=false
-persist.ims.vt.epdg=false
-persist.audio.calfile0=/etc/acdbdata/QRD/QRD_Bluetooth_cal.acdb
-persist.audio.calfile1=/etc/acdbdata/QRD/QRD_General_cal.acdb
-persist.audio.calfile2=/etc/acdbdata/QRD/QRD_Global_cal.acdb
-persist.audio.calfile3=/etc/acdbdata/QRD/QRD_Handset_cal.acdb
-persist.audio.calfile4=/etc/acdbdata/QRD/QRD_Hdmi_cal.acdb
-persist.audio.calfile5=/etc/acdbdata/QRD/QRD_Headset_cal.acdb
-persist.audio.calfile6=/etc/acdbdata/QRD/QRD_Speaker_cal.acdb
-af.fast_track_multiplier=1
-audio.pp.asphere.enabled=true
-audio.safx.pbe.enabled=true
-audio.offload.pcm.16bit.enable=true
-audio.offload.pcm.24bit.enable=true
-af.resampler.quality=255
-persist.audio.fluence.mode=endfire
-persist.audio.handset.mic=digital
-ro.config.hw_dolby=true
-ro.config.hw_dts=true
-audio.dolby.ds2.enabled=true
-audio.dolby.ds2.hardbypass=true
-
-#overall performance tweaks
-persist.service.pcsync.enable=0
-debug.gralloc.enable_fb_ubwc=1
-ro.config.hw_quickpoweron=true
-ro.ril.enable.amr.wideband=1
-ro.product.gpu.driver=1
-video.accelerate.hw=1
-persist.sys.use_16bpp_alpha=1
-ro.media.enc.jpeg.quality=100
-ro.config.disable.hw_accel=false
-hwui.render_dirty_regions=false
-ro.media.dec.jpeg.memcap=8000000
-ro.media.enc.hprof.vid.bps=8000000
-ro.config.hw_fast_dormancy=1
-persist.sys.use_dithering=0
-wifi.supplicant_scan_interval=300000
-sys.hwc.gpu_perf_mode=1
-camera.lowpower.record.enable=1
-persist.hwc.downscale_treshold=1.165
-debug.sf.dump.enable=true
-vidc.enc.dcvs.extra-buff-count=4
-persist.hwc.enable_vds=1
-ro.cutoff_voltage_mv=3200
-
-# Device will boot faster
-persist.sys.shutdown.mode=hibernate
-ro.config.hw_fast_dormancy=1
-ro.config.hw_quickpoweron=true
-persist.radio.add_power_save=1
-
-
-#More Power Saving
-pm.sleep_mode=1
-ro.ril.disable.power.collapse=0 
-ro.ril.power_collapse=1
-ro.config.hw_power_saving=1
-
-#qualcomm specific and hwui tweaks
-debug.qctwa.statusbar=1
-debug.qc.hardware=true
-com.qc.hardware=true
-debug.qctwa.preservebuf=1
-ro.hwui.layer_cache_size=72
-ro.hwui.r_buffer_cache_size=12
-ro.hwui.path_cache_size=32
-ro.hwui.gradient_cache_size=2
-ro.hwui.drop_shadow_cache_size=8
-ro.hwui.texture_cache_flushrate=0.6
-ro.hwui.text_small_cache_width=1024
-ro.hwui.text_small_cache_height=1024
-ro.hwui.text_large_cache_height=2048
-
-# use 2 threads max for dex2oat
-ro.sys.fw.dex2oat_thread_count=2
-dalvik.vm.dex2oat-threads=2
-dalvik.vm.image-dex2oat-threads=2
-
-#VoLTE
-persist.volte_enalbed_by_hw=1
-
-#Voice Call Steps
-ro.config.vc_call_vol_steps=12
-
-# SSR
-persist.sys.ssr.restart_level=ALL_ENABLE
 
 #Stop spamming
 persist.data.qmi.adb_logmask=0
@@ -342,4 +246,40 @@ persist.dbg.volte_avail_ovr=1
 DEVICE_PROVISIONED=1
 ril.subscription.types=NV,RUIM
 persist.volte_enalbed_by_hw=1
+
+#Dolby additional settings
+ro.config.hw_dolby=true
+ro.config.hw_dts=true
+
+#Signal and voice quality
+ro.ril.enable.amr.wideband=1
+ro.config.hw_fast_dormancy=1
+persist.radio.eons.enabled=true
+persist.cust.tel.eons=1
+
+# use 4 threads max for dex2oat - saves power
+ro.sys.fw.dex2oat_thread_count=4
+dalvik.vm.dex2oat-threads=4
+dalvik.vm.image-dex2oat-threads=4
+
+#More Power Saving and Performance
+pm.sleep_mode=1
+ro.ril.disable.power.collapse=0 
+ro.ril.power_collapse=1
+ro.config.hw_power_saving=1
+persist.radio.add_power_save=1
+persist.sys.use_16bpp_alpha=1
+persist.sys.use_dithering=0
+wifi.supplicant_scan_interval=300000
+
+# Qualcomm tweaks
+com.qc.hardware=1
+debug.qc.hardware=true
+debug.qctwa.preservebuf=1
+debug.qctwa.statusbar=1
+
+# Sensors
+ro.qc.sdk.gestures.camera=true
+ro.qc.sdk.camera.facialproc=true
+ro.qc.sdk.sensors.gestures=true
 

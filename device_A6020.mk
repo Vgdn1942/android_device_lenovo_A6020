@@ -61,7 +61,6 @@ $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk
 # Audio config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
-    $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/audio/mixer_paths_qrd_skuh.xml:system/etc/mixer_paths_qrd_skuh.xml
 
@@ -69,12 +68,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     audiod \
     audio.primary.msm8916 \
+    audio_policy.msm8916 \
     audio.r_submix.default \
     audio.usb.default \
     libaudio-resampler \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     libqcompostprocbundle \
+    libtinyalsa \
+    libtinycompress \
     tinymix
 
 # Bluetooth
@@ -105,16 +107,14 @@ PRODUCT_PACKAGES += \
 # FM
 PRODUCT_PACKAGES += \
     FMRadio \
-    libfmjni
+    libfmjni \
+    libqcomfm_jni \
+    qcom.fmradio
 
 # CM
 PRODUCT_PACKAGES += \
 	org.cyanogenmod.platform \
 	org.cyanogenmod.platform-res
-
-# Gello
-#PRODUCT_PACKAGES += \
-#	Gello
 
 # Gestures
 PRODUCT_PACKAGES += \

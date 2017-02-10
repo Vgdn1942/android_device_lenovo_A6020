@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+# Copyright (c) 2012-2017, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -501,7 +501,7 @@ case "$target" in
         if [ "$ProductName" == "msm8916_32" ] || [ "$ProductName" == "msm8916_32_LMT" ]; then
             echo 0 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
             echo 53059 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
-        elif [ "$ProductName" == "msm8916_64" ] || [ "$ProductName" == "msm8916_64_LMT" ]|| [ "$ProductName" == "K32c36" ]|| [ "$ProductName" == "A6020a46" ]|| [ "$ProductName" == "K32c30" ]|| [ "$ProductName" == "A6020a40" ]; then
+        elif [ "$ProductName" == "msm8916_64" ] || [ "$ProductName" == "msm8916_64_LMT" ]|| [ "$ProductName" == "K32c36" ]|| [ "$ProductName" == "A6020a40" ]|| [ "$ProductName" == "K32c30" ]|| [ "$ProductName" == "A6020l36" ]; then
             echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
             echo 81250 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
         fi
@@ -526,7 +526,7 @@ case "$target" in
                 echo 0 > /sys/module/msm_thermal/core_control/enabled
 		echo 1 > /sys/devices/system/cpu/cpu0/online
                 echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-                echo 200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+                echo 800000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
                 # enable thermal core_control now
                 echo 1 > /sys/module/msm_thermal/core_control/enabled
 
@@ -563,7 +563,7 @@ case "$target" in
                 echo 0 > /sys/module/msm_thermal/core_control/enabled
 		echo 1 > /sys/devices/system/cpu/cpu0/online
                 echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-                echo 200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+                echo 800000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
                 # enable thermal core_control now
                 echo 1 > /sys/module/msm_thermal/core_control/enabled
 
@@ -587,7 +587,7 @@ case "$target" in
 
 		for gpu_bimc_io_percent in /sys/class/devfreq/qcom,gpubw*/bw_hwmon/io_percent
 		do
-			echo 40 > $gpu_bimc_io_percent
+			echo 20 > $gpu_bimc_io_percent
 		done
 
             ;;
@@ -618,13 +618,13 @@ case "$target" in
 			 echo "bw_hwmon" > $devfreq_gov
                          for cpu_io_percent in /sys/class/devfreq/qcom,cpubw*/bw_hwmon/io_percent
                          do
-                                echo 20 > $cpu_io_percent
+                                echo 12 > $cpu_io_percent
                          done
 		done
 
 		for gpu_bimc_io_percent in /sys/class/devfreq/qcom,gpubw*/bw_hwmon/io_percent
 		do
-			 echo 40 > $gpu_bimc_io_percent
+			 echo 20 > $gpu_bimc_io_percent
 		done
 		# disable thermal core_control to update interactive gov settings
                 echo 0 > /sys/module/msm_thermal/core_control/enabled
@@ -632,28 +632,33 @@ case "$target" in
                 # enable governor for perf cluster
                 echo 1 > /sys/devices/system/cpu/cpu0/online
                 echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-                echo "20000 1113600:50000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
+                echo 95000 1113600:85000 1344000:260000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
                 echo 85 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
-                echo 20000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
-                echo 1113600 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+                echo 82000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
+                echo 960000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
                 echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
-                echo "1 960000:85 1113600:90 1344000:80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
-                echo 50000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
-                echo 50000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/sampling_down_factor
+                echo "98 200000:52 345600:77 400000:67 533333:74 800000:75 1113600:80 1344000:82 1459200:87 1497600:200" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+                echo 62000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
+                echo 15000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/sampling_down_factor
+                echo 192000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
+                echo 2000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis
                 echo 200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+		echo 1497600 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+
 
                 # enable governor for power cluster
                 echo 1 > /sys/devices/system/cpu/cpu4/online
                 echo "interactive" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
-                echo "25000 800000:50000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
-                echo 90 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
-                echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
-                echo 998400 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
+                echo 125000 998400:125000 1209600:315000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+                echo 88 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
+                echo 90000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
+                echo 800000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
                 echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
-                echo "1 800000:90" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
-                echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
-                echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/sampling_down_factor
+                echo "98 200000:42 249600:56 400000:58 499200:62 998400:92 1113600:95 1209600:300" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
+                echo 160000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
+                echo 25000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/sampling_down_factor
                 echo 200000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+		echo 1209600 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
 
                 # enable thermal core_control now
 		echo 1 > /sys/module/msm_thermal/core_control/enabled
@@ -671,8 +676,8 @@ case "$target" in
 		echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
 
                 # HMP scheduler (big.Little cluster related) settings
-                echo 75 > /proc/sys/kernel/sched_upmigrate
-                echo 60 > /proc/sys/kernel/sched_downmigrate
+                echo 76 > /proc/sys/kernel/sched_upmigrate
+                echo 67 > /proc/sys/kernel/sched_downmigrate
 
                 # cpu idle load threshold
                 echo 30 > /sys/devices/system/cpu/cpu0/sched_mostly_idle_load
@@ -714,45 +719,54 @@ case "$target" in
                     echo "bw_hwmon" > $devfreq_gov
                     for cpu_io_percent in /sys/class/devfreq/qcom,cpubw*/bw_hwmon/io_percent
                     do
-                        echo 20 > $cpu_io_percent
+                        echo 12 > $cpu_io_percent
                     done
                 done
 
                 for gpu_bimc_io_percent in /sys/class/devfreq/qcom,gpubw*/bw_hwmon/io_percent
                 do
-                    echo 40 > $gpu_bimc_io_percent
+                    echo 15 > $gpu_bimc_io_percent
                 done
                 # disable thermal core_control to update interactive gov settings
+                
                 echo 0 > /sys/module/msm_thermal/core_control/enabled
+                echo "N" > /sys/module/msm_thermal/parameters/enabled
 
                 # enable governor for perf cluster
                 echo 1 > /sys/devices/system/cpu/cpu0/online
                 echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-                echo "19000 1113600:39000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
+                echo 95000 1113600:85000 1344000:260000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
                 echo 85 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
-                echo 20000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
-                echo 1113600 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+                echo 82000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
+                echo 960000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
                 echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
-                echo "1 960000:85 1113600:90 1344000:80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
-                echo 40000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
-                echo 40000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/sampling_down_factor
+                echo "98 200000:52 345600:77 400000:67 533333:74 800000:75 1113600:80 1344000:82 1459200:87 1497600:200" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+                echo 62000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
+                echo 15000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/sampling_down_factor
+                echo 192000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
+                echo 2000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis
                 echo 200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+		echo 1497600 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+
 
                 # enable governor for power cluster
                 echo 1 > /sys/devices/system/cpu/cpu4/online
                 echo "interactive" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
-                echo 39000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
-                echo 90 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
-                echo 20000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
+                echo 125000 998400:125000 1209600:315000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+                echo 88 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
+                echo 90000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
                 echo 800000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
                 echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
-                echo "1 800000:90" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
-                echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
-                echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/sampling_down_factor
+                echo "98 200000:42 249600:56 400000:58 499200:62 998400:92 1113600:95 1209600:300" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
+                echo 160000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
+                echo 25000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/sampling_down_factor
                 echo 200000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+		echo 1209600 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
 
                 # enable thermal core_control now
+               
                 echo 1 > /sys/module/msm_thermal/core_control/enabled
+                echo "Y" > /sys/module/msm_thermal/parameters/enabled
 
                 # Bring up all cores online
                 echo 1 > /sys/devices/system/cpu/cpu1/online
@@ -766,8 +780,8 @@ case "$target" in
 		echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
 
                 # HMP scheduler (big.Little cluster related) settings
-                echo 93 > /proc/sys/kernel/sched_upmigrate
-                echo 83 > /proc/sys/kernel/sched_downmigrate
+                echo 76 > /proc/sys/kernel/sched_upmigrate
+                echo 67 > /proc/sys/kernel/sched_downmigrate
 
                 # Enable sched guided freq control
                 echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load
@@ -777,13 +791,6 @@ case "$target" in
                 echo 50000 > /proc/sys/kernel/sched_freq_inc_notify
                 echo 50000 > /proc/sys/kernel/sched_freq_dec_notify
 
-                # Enable core control
-                insmod /system/lib/modules/core_ctl.ko
-                echo 2 > /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
-                echo 4 > /sys/devices/system/cpu/cpu0/core_ctl/max_cpus
-                echo 68 > /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres
-                echo 40 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
-                echo 100 > /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms
                 case "$revision" in
                      "3.0")
                      # Enable dynamic clock gatin
@@ -860,7 +867,7 @@ case "$target" in
         echo "1 960000:85 1113600:90 1344000:80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
         echo 40000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
         echo 40000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/sampling_down_factor
-        echo 200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+        echo 960000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 
         # enable governor for power cluster
         echo 1 > /sys/devices/system/cpu/cpu4/online
@@ -873,7 +880,7 @@ case "$target" in
         echo "1 800000:90" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
         echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
         echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/sampling_down_factor
-        echo 200000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+        echo 800000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 
         # enable thermal core_control now
         echo 1 > /sys/module/msm_thermal/core_control/enabled
@@ -1105,7 +1112,7 @@ case "$target" in
         echo 0 > /sys/module/msm_thermal/core_control/enabled
         echo 1 > /sys/devices/system/cpu/cpu0/online
         echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-        echo 200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+        echo 800000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
         # enable thermal core_control now
         echo 1 > /sys/module/msm_thermal/core_control/enabled
 
@@ -1336,9 +1343,48 @@ echo 70 > /sys/module/process_reclaim/parameters/pr_pressure_max
 echo 512 > /sys/module/process_reclaim/parameters/per_swap_size
 echo 30 > /sys/module/process_reclaim/parameters/swap_opt_eff
 
+#Advanced GPU governor 
+echo "msm-adreno-tz" > /sys/class/kgsl/kgsl-3d0/devfreq/governor
+echo "465000000" > /sys/class/kgsl/kgsl-3d0/max_gpuclk
+echo "0" > /sys/class/kgsl/kgsl-3d0/ppd/enable
 
-diag_extra=`getprop persist.sys.usb.config.extra`
-if [ "$diag_extra" == "" ]; then
-    setprop persist.sys.usb.config.extra none
-fi
+#ZEN I/O Scheduler
+echo "zen" > /sys/block/mmcblk0/queue/scheduler
+echo "zen" > /sys/block/mmcblk1/queue/scheduler
+
+#CPUs affinity
+echo "1" > /sys/block/mmcblk0/queue/rq_affinity
+echo "1" > /sys/block/mmcblk1/queue/rq_affinity
+
+#Memory read cache
+echo "1024" > /sys/block/mmcblk0/queue/read_ahead_kb
+echo "2048" > /sys/block/mmcblk1/queue/read_ahead_kb
+
+#MSM Thermal enabled
+echo "Y" > /sys/module/msm_thermal/parameters/enabled
+
+#Qualcomm Quick Charge 2.0 Optimizations
+echo "Y" > /sys/module/phy_msm_usb/parameters/floated_charger_enable
+
+#Screen Maximum Brightness
+echo 170 > /sys/class/leds/lcd-backlight/max_brightness
+
+#Some audio tweaks by kernel 
+setprop ro.config.hw_dts true
+setprop ro.platform.support.dolby true
+setprop ro.platform.support.dts true
+setprop use.dts_m6 true
+setprop use.dts_m6_notify true
+setprop use.dts_eagle true
+
+#Audio PCM Samplerates
+setprop ro.audio.samplerate 192000
+setprop ro.audio.pcm.samplerate 192000
+
+#Kernel sound propsfor SOC proprieties
+echo 1 > /sys/module/snd_soc_msm8x16_wcd/parameters/det_extn_cable_en
+echo 1 > /sys/module/snd_soc_msm8x16_wcd/parameters/high_perf_mode
+echo 1 > /sys/module/snd_soc_msm8x16_wcd/parameters/impedance_detect_en
+
+#END OF OPTIMIZATION SCRIPTS BE HAPPY =D
 
