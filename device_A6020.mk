@@ -107,9 +107,7 @@ PRODUCT_PACKAGES += \
 # FM
 PRODUCT_PACKAGES += \
     FMRadio \
-    libfmjni \
-    libqcomfm_jni \
-    qcom.fmradio
+    libfmjni
 
 # CM
 PRODUCT_PACKAGES += \
